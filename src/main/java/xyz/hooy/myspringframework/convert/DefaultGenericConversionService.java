@@ -1,7 +1,7 @@
-package xyz.hooy.myspringframework.core.convert;
+package xyz.hooy.myspringframework.convert;
 
-import xyz.hooy.myspringframework.core.convert.converter.IntegerToStringConverter;
-import xyz.hooy.myspringframework.core.convert.converter.StringToNumberConverterFactory;
+import xyz.hooy.myspringframework.convert.converter.IntegerToStringConverter;
+import xyz.hooy.myspringframework.convert.converter.StringToNumberConverterFactory;
 
 public class DefaultGenericConversionService extends GenericConversionService {
 

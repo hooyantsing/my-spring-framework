@@ -1,4 +1,4 @@
-package xyz.hooy.myspringframework.core.io;
+package xyz.hooy.myspringframework.io;
 
 import java.io.IOException;
 import java.io.InputStream;

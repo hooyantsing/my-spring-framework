@@ -1,9 +1,8 @@
 package xyz.hooy.myspringframework.beans.factory;
 
 import xyz.hooy.myspringframework.beans.BeansException;
-import xyz.hooy.myspringframework.beans.DefaultSingletonBeanRegistry;
 import xyz.hooy.myspringframework.beans.NoSuchBeanDefinitionException;
-import xyz.hooy.myspringframework.core.convert.ConversionService;
+import xyz.hooy.myspringframework.convert.ConversionService;
 
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
 

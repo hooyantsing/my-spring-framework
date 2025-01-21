@@ -1,4 +1,4 @@
-package xyz.hooy.myspringframework.beans;
+package xyz.hooy.myspringframework.beans.factory;
 
 import java.util.Map;
 import java.util.Objects;

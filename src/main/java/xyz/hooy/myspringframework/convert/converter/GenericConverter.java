@@ -1,6 +1,7 @@
-package xyz.hooy.myspringframework.core.convert.converter;
+package xyz.hooy.myspringframework.convert.converter;
 
 
+import java.util.Objects;
 import java.util.Set;
 
 public interface GenericConverter {
@@ -36,16 +37,16 @@ public interface GenericConverter {
                 return false;
             }
             ConvertiblePair that = (ConvertiblePair) o;
-            if (!sourceType.equals(that.sourceType)) {
+            if (!Objects.equals(sourceType, that.sourceType)) {
                 return false;
             }
-            return targetType.equals(that.targetType);
+            return Objects.equals(targetType, that.targetType);
         }
 
         @Override
         public int hashCode() {
-            int result = sourceType.hashCode();
-            result = 31 * result + targetType.hashCode();
+            int result = sourceType != null ? sourceType.hashCode() : 0;
+            result = 31 * result + (targetType != null ? targetType.hashCode() : 0);
             return result;
         }
     }

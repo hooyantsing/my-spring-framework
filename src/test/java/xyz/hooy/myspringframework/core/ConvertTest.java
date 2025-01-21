@@ -1,6 +1,7 @@
-package xyz.hooy.myspringframework.core.convert;
+package xyz.hooy.myspringframework.core;
 
 import org.junit.jupiter.api.Test;
+import xyz.hooy.myspringframework.convert.DefaultGenericConversionService;
 
 public class ConvertTest {
 

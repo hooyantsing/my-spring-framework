@@ -1,4 +1,4 @@
-package xyz.hooy.myspringframework.core.convert;
+package xyz.hooy.myspringframework.convert;
 
 public interface ConversionService {
 
