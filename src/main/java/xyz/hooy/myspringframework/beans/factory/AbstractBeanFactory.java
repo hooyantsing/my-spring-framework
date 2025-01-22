@@ -36,12 +36,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     @Override
     public Object getBean(String name) throws BeansException {
-        Object bean = getSingleton(name);
-        if (Objects.nonNull(bean)) {
-            return bean;
-        }
-        BeanDefinition beanDefinition = getBeanDefinition(name);
-        return createBean(name, beanDefinition);
+        return doGetBean(name);
     }
 
     @Override
@@ -56,7 +51,8 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     @Override
     public boolean containsBean(String name) {
-        throw new UnsupportedOperationException();
+        return containsLocalBean(name) ||
+                (Objects.nonNull(getParentBeanFactory()) && getParentBeanFactory().containsBean(name));
     }
 
     @Override
@@ -64,10 +60,27 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         throw new UnsupportedOperationException();
     }
 
+    protected Object doGetBean(String name) {
+        Object bean = getSingleton(name);
+        if (Objects.nonNull(bean)) { // 直接返回
+            return bean;
+        } else if (containsBeanDefinition(name)) { // 根据 BeanDefinition 创建 Bean
+            BeanDefinition beanDefinition = getBeanDefinition(name);
+            return createBean(name, beanDefinition);
+        } else if (Objects.nonNull(getParentBeanFactory())) { // 委托给父级 BeanFactory
+            return getParentBeanFactory().getBean(name);
+        } else {
+            throw new BeanCreationException("Not found " + name + "bean.");
+        }
+    }
+
     protected abstract Object createBean(String beanName, BeanDefinition beanDefinition) throws BeanCreationException;
 
     protected abstract BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 
+    /**
+     * 仅检查当前 BeanFactory 是否包含给定名称的 BeanDefinition
+     */
     protected abstract boolean containsBeanDefinition(String beanName);
 
     public boolean isBeanNameInUse(String beanName) {

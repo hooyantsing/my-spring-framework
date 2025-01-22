@@ -40,7 +40,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     public BeanDefinition getBeanDefinition(String beanName) throws NoSuchBeanDefinitionException {
         BeanDefinition beanDefinition = this.beanDefinitionMap.get(beanName);
         if (Objects.isNull(beanDefinition)) {
-            throw new org.springframework.beans.factory.NoSuchBeanDefinitionException(beanName);
+            throw new NoSuchBeanDefinitionException(beanName);
         }
         return beanDefinition;
     }
